@@ -1,0 +1,28 @@
+namespace FrameworkDesign
+{
+    public interface ISystem :IBelongToArchitecture,ICanSetArchitecture,ICanGetModel,ICanGetUtility,ICanSendEvent,ICanRegisterEvent,ICanGetSystem
+    {
+        void Init();
+    }
+
+    public abstract class AbstractSystem : ISystem
+    {
+        private IArchitecture mArchitecture1;
+        IArchitecture IBelongToArchitecture.GetArchitecture()
+        {
+            return mArchitecture1; 
+        }
+        void ICanSetArchitecture.SetArchitecture(IArchitecture architecture)
+        {
+            mArchitecture1 = architecture;
+        }
+
+        void ISystem.Init()
+        {
+            OnInit();
+        }
+
+        protected abstract void OnInit();
+
+    }
+}
